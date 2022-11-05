@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Home } from './pages/Home';
-// import logo from './logo.svg';
 import './App.css';
+import '@rainbow-me/rainbowkit/styles.css';
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { WagmiConfig } from 'wagmi';
+import { wagmiClient, rainbowChains } from './services/chainConfig';
 
 const router = createBrowserRouter([
   {
@@ -14,23 +17,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-    <RouterProvider router={router} />
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider chains={rainbowChains}>
+        <RouterProvider router={router} />
+      </RainbowKitProvider>
+    </WagmiConfig>
   );
 }
 

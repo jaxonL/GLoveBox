@@ -1,4 +1,5 @@
 import './Nav.css';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export function Nav() {
   return (
@@ -6,7 +7,9 @@ export function Nav() {
       {/* TODO: add react router links */}
       <ul>
         <li>My Glovebox</li>
-        <li>Connect</li>
+        <li>
+          <ConnectButton label="Connect" showBalance={false} />
+        </li>
       </ul>
     </div>
   );
