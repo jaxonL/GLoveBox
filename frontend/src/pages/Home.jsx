@@ -165,7 +165,9 @@ export function Home() {
           {renderSubmitContent()}
         </Button>
         {!registered && !registerSuccess && (
-          <p>By sending a message, you also opt into receiving good vibes.</p>
+          <p style={{ marginTop: 0 }}>
+            by sending a message, you also opt into receiving good vibes.
+          </p>
         )}
       </div>
     </>
