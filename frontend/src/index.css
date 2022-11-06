@@ -16,6 +16,8 @@ html {
   background: url('./assets/images/robotstatic-07_2.png'),
     url('./assets/images/bg.png'), #faf8f3;
   background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 body {
@@ -114,6 +116,12 @@ h3 {
 .successMessage p a:hover,
 .faq a:hover {
   color: #8a3e2b;
+}
+
+.heart-animation {
+  position: absolute;
+  height: 100%;
+  top: 0;
 }
 
 .faq p {

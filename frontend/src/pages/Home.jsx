@@ -115,7 +115,7 @@ export function Home() {
       <Nav />
       <div className="body">
         <div className="tagline title">
-          send and receive a nice note that live will forever
+          send and receive a nice note that will live forever
         </div>
         <p>
           let someone know you’re thinking of them, share a joke, or just tell
@@ -131,29 +131,36 @@ export function Home() {
           disabled={uploadingFile || sendMessageLoading || showSuccess}
         />
         {showSuccess && (
-          <div className="successMessage">
-            <p>success! your message has been sent</p>
-            <p>
-              view your transaction{' '}
-              <a
-                href={kSkaleExplorer + '/tx/' + sendMessageData?.hash}
-                target="_blank"
-                rel="noopener noreferrer"
+          <>
+            <img
+              src={require('../assets/images/heart_animation.gif')}
+              alt="animated hearts"
+              className="heart-animation"
+            />
+            <div className="successMessage">
+              <p>success! your message has been sent</p>
+              <p>
+                view your transaction{' '}
+                <a
+                  href={kSkaleExplorer + '/tx/' + sendMessageData?.hash}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  here
+                </a>
+              </p>
+              <Button component={Link} to="/my-glovebox" variant="contained">
+                see your messages
+              </Button>
+              <Button
+                type="button"
+                onClick={sendAnotherClicked}
+                variant="contained"
               >
-                here
-              </a>
-            </p>
-            <Button component={Link} to="/my-glovebox" variant="contained">
-              see your messages
-            </Button>
-            <Button
-              type="button"
-              onClick={sendAnotherClicked}
-              variant="contained"
-            >
-              send another
-            </Button>
-          </div>
+                send another
+              </Button>
+            </div>
+          </>
         )}
         <Button
           id="sendButton"
