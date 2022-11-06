@@ -1,22 +1,54 @@
 import React, { useState } from 'react';
 import { Nav } from '../components/nav/Nav';
 import { Button, TextField } from '@mui/material';
-import { useAccount } from 'wagmi';
-
+import {
+  useAccount,
+  // useContractWrite,
+  // usePrepareContractWrite,
+  // useWaitForTransaction,
+} from 'wagmi';
+import { kGloveBoxAddress } from '../utils/constants';
 import './Home.css';
 
 export function Home() {
   const [message, setMessage] = useState('');
   const { address, isDisconnected } = useAccount();
+  const [uploadingFile, setUploadingFile] = useState(false);
 
   const onMessageChange = (event) => {
     setMessage(event.target.value);
   };
 
-  const sendButtonClicked = (e) => {
+  // const { config } = usePrepareContractWrite({
+  //   address: kGloveBoxAddress,
+  //   abi: [
+  //     {
+  //       name: 'sendMessage',
+  //       type: 'function',
+  //       stateMutability: 'nonpayable',
+  //       inputs: [
+  //         {
+  //           name: 'message',
+  //           type: 'string',
+  //         },
+  //       ],
+  //       outputs: [],
+  //     },
+  //   ],
+  //   functionName: 'sendMessage',
+  // });
+
+  // const { data, write: sendMessage } = useContractWrite(config);
+  // const { isLoading, isSuccess } = useWaitForTransaction({
+  //   hash: data?.hash,
+  // });
+
+  const sendButtonClicked = async (e) => {
     e.preventDefault();
+    setUploadingFile(true);
     console.log('send button clicked', message, 'address:', address);
-    // get connected address
+    // sendMessage(message);
+    setUploadingFile(false);
   };
 
   return (
@@ -40,7 +72,9 @@ export function Home() {
           type="submit"
           onClick={sendButtonClicked}
           disabled={isDisconnected}
+          // disabled={isDisconnected || !sendMessage || uploadingFile}
         >
+          {/* TODO: loading spinner if !sendMessage */}
           {isDisconnected ? 'Connect' : 'send <3'}
         </Button>
       </div>
