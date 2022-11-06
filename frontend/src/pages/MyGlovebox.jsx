@@ -1,5 +1,9 @@
 import { Nav } from '../components/nav/Nav';
+import { useAccount } from 'wagmi';
+
 export function MyGlovebox() {
+  const { address } = useAccount();
+
   return (
     <>
       <Nav />

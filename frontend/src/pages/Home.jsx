@@ -3,6 +3,7 @@ import { Nav } from '../components/nav/Nav';
 import { Button, CircularProgress, TextField } from '@mui/material';
 import {
   useAccount,
+  useContractRead,
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
@@ -10,6 +11,7 @@ import {
 import { kGloveBoxAddress } from '../utils/constants';
 import { useEffect } from 'react';
 import { useDebounce } from '../hooks/useDebounce';
+import { kGloveboxAbi } from '../utils/gloveboxAbi';
 
 export function Home() {
   const [message, setMessage] = useState('');
@@ -21,37 +23,69 @@ export function Home() {
     setMessage(event.target.value);
   };
 
-  const { config } = usePrepareContractWrite({
-    address: kGloveBoxAddress,
-    abi: [
-      {
-        type: 'function',
-        stateMutability: 'nonpayable',
-        outputs: [],
-        name: 'sendMessage',
-        inputs: [{ type: 'string', name: 'message', internalType: 'string' }],
+  const { data: isRegisteredData, refetch: refetchIsRegistered } =
+    useContractRead({
+      address: kGloveBoxAddress,
+      abi: kGloveboxAbi,
+      functionName: 'isRegistered',
+      args: [address],
+      onSettled(data, error) {
+        console.log('Settled', { data, error });
       },
-    ],
+    });
+  const [registered, setRegistered] = useState(isRegisteredData || false);
+
+  useEffect(() => {
+    console.log('registered?', isRegisteredData);
+    if (isRegisteredData) {
+      setRegistered(true);
+    }
+  }, [isRegisteredData]);
+
+  const { config: sendMessageConfig } = usePrepareContractWrite({
+    address: kGloveBoxAddress,
+    abi: kGloveboxAbi,
     functionName: 'sendMessage',
     args: [debouncedMessage],
     enabled: !!debouncedMessage,
   });
 
-  const { data, writeAsync: sendMessage } = useContractWrite(config);
-  const { isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
+  const { config: registerConfig } = usePrepareContractWrite({
+    address: kGloveBoxAddress,
+    abi: kGloveboxAbi,
+    functionName: 'register',
+  });
+
+  const { data: sendMessageData, writeAsync: sendMessage } =
+    useContractWrite(sendMessageConfig);
+  const { data: registerData, writeAsync: register } =
+    useContractWrite(registerConfig);
+
+  const { isSuccess: sendMessageSuccess } = useWaitForTransaction({
+    hash: sendMessageData?.hash,
+  });
+  const { isSuccess: registerSuccess } = useWaitForTransaction({
+    hash: registerData?.hash,
   });
 
   useEffect(() => {
-    if (isSuccess) {
-      console.log('tx suceeded', data?.hash);
+    if (sendMessageSuccess) {
+      console.log('tx suceeded', sendMessageData?.hash);
     }
-  }, [isSuccess, data]);
+  }, [sendMessageSuccess, sendMessageData]);
 
   const sendButtonClicked = async (e) => {
     e.preventDefault();
     setUploadingFile(true);
     console.log('send button clicked', message, 'address:', address);
+    if (!registered) {
+      try {
+        await register();
+        refetchIsRegistered();
+      } catch (e) {
+        console.warn('register errored', e);
+      }
+    }
     try {
       await sendMessage({ message });
       setMessage('');
@@ -99,6 +133,9 @@ export function Home() {
         >
           {renderSubmitContent()}
         </Button>
+        {!registered && (
+          <p>By sending a message, you also opt into receiving good vibes.</p>
+        )}
       </div>
     </>
   );
