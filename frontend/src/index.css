@@ -52,6 +52,18 @@ button {
   height: 90vh;
 }
 
+/* common css */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.tagline {
+  margin-bottom: 72px;
+}
+
 footer {
   display: flex;
   justify-content: center;

@@ -8,7 +8,6 @@ import {
   useWaitForTransaction,
 } from 'wagmi';
 import { kGloveBoxAddress } from '../utils/constants';
-import './Home.css';
 import { useEffect } from 'react';
 import { useDebounce } from '../hooks/useDebounce';
 
