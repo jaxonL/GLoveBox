@@ -5,7 +5,7 @@ import {
   createClient,
 } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public'
-import { kSkaleChainId, kSkaleEndpoint } from '../utils/constants';
+import { kSkaleChainId, kSkaleEndpoint, kSkaleExplorer } from '../utils/constants';
 
 const skaleChain = {
   id: kSkaleChainId,
@@ -22,7 +22,7 @@ const skaleChain = {
     public: kSkaleEndpoint,
   },
   blockExplorers: {
-    default: { name: 'SkaleExplorer', url: 'https://hackathon-complex-easy-naos.explorer.eth-sf.skalenodes.com' },
+    default: { name: 'SkaleExplorer', url: kSkaleExplorer },
   },
   testnet: true,
 };

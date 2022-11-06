@@ -65,7 +65,7 @@ button {
   margin-bottom: 72px;
 }
 
-/* lazy */
+/* TODO: lazy -- should pull into separate files */
 .messageGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -74,6 +74,17 @@ button {
   width: 100%;
   height: 100%;
   padding: 1em;
+}
+
+.successMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 28%;
+  background-color: hsl(0deg 0% 100% / 54%);
+  padding: 2em;
 }
 
 footer {
