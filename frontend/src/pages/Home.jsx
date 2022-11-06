@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { Nav } from '../components/nav/Nav';
-import { Button, TextField } from '@mui/material';
+import { Button, CircularProgress, TextField } from '@mui/material';
 import {
   useAccount,
-  // useContractWrite,
-  // usePrepareContractWrite,
-  // useWaitForTransaction,
+  useContractWrite,
+  usePrepareContractWrite,
+  useWaitForTransaction,
 } from 'wagmi';
 import { kGloveBoxAddress } from '../utils/constants';
 import './Home.css';
+import { useEffect } from 'react';
+import { useDebounce } from '../hooks/useDebounce';
 
 export function Home() {
   const [message, setMessage] = useState('');
+  const debouncedMessage = useDebounce(message, 500);
   const { address, isDisconnected } = useAccount();
   const [uploadingFile, setUploadingFile] = useState(false);
 
@@ -19,36 +22,55 @@ export function Home() {
     setMessage(event.target.value);
   };
 
-  // const { config } = usePrepareContractWrite({
-  //   address: kGloveBoxAddress,
-  //   abi: [
-  //     {
-  //       name: 'sendMessage',
-  //       type: 'function',
-  //       stateMutability: 'nonpayable',
-  //       inputs: [
-  //         {
-  //           name: 'message',
-  //           type: 'string',
-  //         },
-  //       ],
-  //       outputs: [],
-  //     },
-  //   ],
-  //   functionName: 'sendMessage',
-  // });
+  const { config } = usePrepareContractWrite({
+    address: kGloveBoxAddress,
+    abi: [
+      {
+        type: 'function',
+        stateMutability: 'nonpayable',
+        outputs: [],
+        name: 'sendMessage',
+        inputs: [{ type: 'string', name: 'message', internalType: 'string' }],
+      },
+    ],
+    functionName: 'sendMessage',
+    args: [debouncedMessage],
+    enabled: !!debouncedMessage,
+  });
 
-  // const { data, write: sendMessage } = useContractWrite(config);
-  // const { isLoading, isSuccess } = useWaitForTransaction({
-  //   hash: data?.hash,
-  // });
+  const { data, writeAsync: sendMessage } = useContractWrite(config);
+  const { isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log('tx suceeded', data?.hash);
+    }
+  }, [isSuccess, data]);
 
   const sendButtonClicked = async (e) => {
     e.preventDefault();
     setUploadingFile(true);
     console.log('send button clicked', message, 'address:', address);
-    // sendMessage(message);
-    setUploadingFile(false);
+    try {
+      await sendMessage({ message });
+      setMessage('');
+    } catch (e) {
+      console.error('caught e', e);
+    } finally {
+      setUploadingFile(false);
+    }
+  };
+
+  const renderSubmitContent = () => {
+    if (isDisconnected) {
+      return 'connect';
+    }
+    if ((message && !sendMessage) || uploadingFile) {
+      return <CircularProgress size={20} />;
+    }
+    return 'send <3';
   };
 
   return (
@@ -71,11 +93,9 @@ export function Home() {
           id="sendButton"
           type="submit"
           onClick={sendButtonClicked}
-          disabled={isDisconnected}
-          // disabled={isDisconnected || !sendMessage || uploadingFile}
+          disabled={isDisconnected || !sendMessage || uploadingFile}
         >
-          {/* TODO: loading spinner if !sendMessage */}
-          {isDisconnected ? 'Connect' : 'send <3'}
+          {renderSubmitContent()}
         </Button>
       </div>
     </>
