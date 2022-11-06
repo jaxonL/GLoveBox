@@ -13,6 +13,7 @@
 
 html {
   height: 100vh;
+  background: url('./assets/images/bg.png'), #faf8f3;
 }
 
 body {
@@ -23,6 +24,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
+  color: hsla(12, 70%, 50%, 1);
 }
 
 code {
