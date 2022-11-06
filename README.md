@@ -15,3 +15,5 @@ The experience is built on Skale as we wanted the most seamless experience for u
 Messages sent on GloveBox only include text. Currently, all metadata is stored in smart contracts. We anticipate utilizing servers to support metadata storage as GloveBox scales.
 
 The Front-End was designed in Figma, and implemented using React.
+
+The smart contract was created using solidity which implemented the openzeppelin contracts. The contract was written on remix.ethereum.org and was connected to the skale chain endpoint of one of the networks. The smart contract is deployed and sends a message full of positivity to a random person. 
