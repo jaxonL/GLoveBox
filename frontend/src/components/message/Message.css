@@ -1,0 +1,12 @@
+.message {
+  height: 269px;
+  width: 100%;
+  left: 760px;
+  top: 447px;
+  border-radius: 30px;
+  background: #fffdf5;
+  border: 2px solid #d84a26;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

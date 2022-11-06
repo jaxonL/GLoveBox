@@ -133,7 +133,7 @@ export function Home() {
         >
           {renderSubmitContent()}
         </Button>
-        {!registered && (
+        {!registered && !registerSuccess && (
           <p>By sending a message, you also opt into receiving good vibes.</p>
         )}
       </div>

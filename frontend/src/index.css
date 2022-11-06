@@ -64,6 +64,17 @@ button {
   margin-bottom: 72px;
 }
 
+/* lazy */
+.messageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 1em;
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+}
+
 footer {
   display: flex;
   justify-content: center;

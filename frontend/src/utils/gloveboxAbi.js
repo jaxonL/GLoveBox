@@ -165,16 +165,6 @@ export const kGloveboxAbi = [
     "name": "getMessageData",
     "outputs": [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      },
-      {
         "internalType": "string",
         "name": "",
         "type": "string"
