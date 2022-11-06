@@ -1,12 +1,25 @@
+@font-face {
+  font-family: 'BogartRegular';
+  src: local('BogartRegular'),
+    url('./assets/fonts/Bogart-Regular-trial.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Gatsbey';
+  src: local('Gatsbey'), url('./assets/fonts/Gatsbey.ttf') format('truetype');
+  font-weight: normal;
+}
+
 html {
   height: 100vh;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
@@ -15,6 +28,21 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+nav {
+  font-family: 'BogartRegular', serif;
+}
+
+.title {
+  font-family: 'BogartRegular', serif;
+  font-size: 1.5em;
+}
+
+body,
+p,
+button {
+  font-family: 'Gatsbey', sans-serif;
 }
 
 #root {
