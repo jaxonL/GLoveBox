@@ -14,6 +14,7 @@
 html {
   height: 100vh;
   background: url('./assets/images/bg.png'), #faf8f3;
+  background-position: center;
 }
 
 body {

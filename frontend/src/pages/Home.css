@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+  align-items: center;
 }
 
-#sendButton {
-  align-self: flex-end;
+.tagline {
+  margin-bottom: 72px;
 }

@@ -78,9 +78,12 @@ export function Home() {
       <Nav />
       <div className="body">
         <div className="tagline title">
-          send and receive messages to strangers that live forever
+          send and receive a nice note that live will forever
         </div>
-        <p>write a nice message to a stranger:</p>
+        <p>
+          let someone know you’re thinking of them, share a joke, or just tell
+          them how you’re feeling right now:
+        </p>
         <TextField
           id="messageInput"
           multiline
