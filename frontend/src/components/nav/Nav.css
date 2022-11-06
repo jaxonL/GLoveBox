@@ -1,0 +1,12 @@
+.navbar ul {
+  float: right;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline-block;
+  margin: 5px 10px;
+  vertical-align: middle;
+}
