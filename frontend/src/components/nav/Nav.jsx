@@ -16,6 +16,14 @@ export function Nav() {
         GLove Box
       </NavLink>
       <ul>
+        <li>
+          <NavLink
+            to="/faq"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            faq
+          </NavLink>
+        </li>
         {isConnected && (
           <li>
             <NavLink

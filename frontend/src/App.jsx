@@ -9,6 +9,7 @@ import { WagmiConfig } from 'wagmi';
 import { wagmiClient, rainbowChains } from './services/chainConfig';
 import { MyGlovebox } from './pages/MyGlovebox';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { Faq } from './pages/Faq';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: '/my-glovebox',
     element: <MyGlovebox />,
+  },
+  {
+    path: '/faq',
+    element: <Faq />,
   },
 ]);
 

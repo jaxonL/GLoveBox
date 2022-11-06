@@ -49,6 +49,10 @@ button {
   font-family: 'Gatsbey', sans-serif;
 }
 
+h3 {
+  margin-bottom: 0;
+}
+
 #root {
   height: 90vh;
 }
@@ -97,12 +101,23 @@ button {
   margin-bottom: 1em;
 }
 
-.successMessage p a:visited {
+.successMessage p a,
+.faq a {
   color: unset;
 }
 
-.successMessage p a:hover {
+.successMessage p a:visited,
+.faq a:visited {
+  color: unset;
+}
+
+.successMessage p a:hover,
+.faq a:hover {
   color: #8a3e2b;
+}
+
+.faq p {
+  margin: 0;
 }
 
 footer {
