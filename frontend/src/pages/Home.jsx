@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Nav } from '../components/nav/Nav';
 import { Button, TextField } from '@mui/material';
+import { useAccount } from 'wagmi';
+
 import './Home.css';
 
 export function Home() {
   const [message, setMessage] = useState('');
+  const { address, isDisconnected } = useAccount();
 
   const onMessageChange = (event) => {
     setMessage(event.target.value);
@@ -12,7 +15,7 @@ export function Home() {
 
   const sendButtonClicked = (e) => {
     e.preventDefault();
-    console.log('send button clicked', message);
+    console.log('send button clicked', message, 'address:', address);
     // get connected address
   };
 
@@ -32,8 +35,13 @@ export function Home() {
           value={message}
           onChange={onMessageChange}
         />
-        <Button id="sendButton" type="submit" onClick={sendButtonClicked}>
-          send &lt;3
+        <Button
+          id="sendButton"
+          type="submit"
+          onClick={sendButtonClicked}
+          disabled={isDisconnected}
+        >
+          {isDisconnected ? 'Connect' : 'send <3'}
         </Button>
       </div>
     </>
