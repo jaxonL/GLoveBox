@@ -13,7 +13,8 @@
 
 html {
   height: 100vh;
-  background: url('./assets/images/bg.png'), #faf8f3;
+  background: url('./assets/images/robotstatic-07_2.png'),
+    url('./assets/images/bg.png'), #faf8f3;
   background-position: center;
 }
 
