@@ -5,7 +5,7 @@ import {
   createClient,
 } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public'
-import { kSkaleChainId } from '../utils/constants';
+import { kSkaleChainId, kSkaleEndpoint } from '../utils/constants';
 
 const skaleChain = {
   id: kSkaleChainId,
@@ -18,8 +18,8 @@ const skaleChain = {
     symbol: 'SFUEL',
   },
   rpcUrls: {
-    default: 'https://eth-sf.skalenodes.com/v1/hackathon-complex-easy-naos',
-    public: 'https://eth-sf.skalenodes.com/v1/hackathon-complex-easy-naos',
+    default: kSkaleEndpoint,
+    public: kSkaleEndpoint,
   },
   blockExplorers: {
     default: { name: 'SkaleExplorer', url: 'https://hackathon-complex-easy-naos.explorer.eth-sf.skalenodes.com' },
