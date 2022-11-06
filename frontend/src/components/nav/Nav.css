@@ -21,3 +21,12 @@
   margin: 5px 10px;
   vertical-align: middle;
 }
+
+.navbar a {
+  text-decoration: none;
+  color: unset;
+}
+
+.navbar a:hover {
+  color: #8a3e2b;
+}

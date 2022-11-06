@@ -5,6 +5,10 @@ import { useAccount } from 'wagmi';
 
 export function Nav() {
   const { isConnected } = useAccount();
+  const activeStyle = {
+    textDecoration: 'underline',
+  };
+
   return (
     <nav className="navbar">
       {/* TODO: active? */}
@@ -14,7 +18,12 @@ export function Nav() {
       <ul>
         {isConnected && (
           <li>
-            <NavLink to="/my-glovebox">my glovebox</NavLink>
+            <NavLink
+              to="/my-glovebox"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              my glovebox
+            </NavLink>
           </li>
         )}
         <li>
