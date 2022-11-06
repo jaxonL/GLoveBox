@@ -16,4 +16,4 @@ Messages sent on GloveBox only include text. Currently, all metadata is stored i
 
 The Front-End was designed in Figma, and implemented using React.
 
-The smart contract was created using solidity which implemented the openzeppelin contracts. The contract was written on remix.ethereum.org and was connected to the skale chain endpoint of one of the networks. The smart contract is deployed and sends a message full of positivity to a random person. 
+The smart contract was created using solidity which implemented the openzeppelin contracts. The contract was written on remix.ethereum.org and was connected to the skale chain endpoint of one of the networks. The smart contract is connected to a metamask wallet that has a specific private key and sends a message full of positivity to a random person when deployed onto the network.
