@@ -4,11 +4,6 @@
   gap: 0.5em;
 }
 
-#messageInput {
-  height: 30vh;
-  width: 100%;
-}
-
 #sendButton {
   align-self: flex-end;
 }
