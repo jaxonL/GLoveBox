@@ -143,10 +143,14 @@ export function Home() {
                 here
               </a>
             </p>
-            <Button component={Link} to="/my-glovebox">
+            <Button component={Link} to="/my-glovebox" variant="contained">
               see your messages
             </Button>
-            <Button type="button" onClick={sendAnotherClicked}>
+            <Button
+              type="button"
+              onClick={sendAnotherClicked}
+              variant="contained"
+            >
               send another
             </Button>
           </div>
@@ -161,6 +165,7 @@ export function Home() {
             uploadingFile ||
             sendMessageLoading
           }
+          variant="contained"
         >
           {renderSubmitContent()}
         </Button>

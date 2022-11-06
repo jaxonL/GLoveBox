@@ -86,6 +86,23 @@ button {
   top: 28%;
   background-color: hsl(0deg 0% 100% / 54%);
   padding: 2em;
+  gap: 0.5em;
+}
+
+.successMessage p {
+  margin: 0;
+}
+
+.successMessage p:last-of-type {
+  margin-bottom: 1em;
+}
+
+.successMessage p a:visited {
+  color: unset;
+}
+
+.successMessage p a:hover {
+  color: #8a3e2b;
 }
 
 footer {

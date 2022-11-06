@@ -8,6 +8,7 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiConfig } from 'wagmi';
 import { wagmiClient, rainbowChains } from './services/chainConfig';
 import { MyGlovebox } from './pages/MyGlovebox';
+import { createTheme, ThemeProvider } from '@mui/material';
 
 const router = createBrowserRouter([
   {
@@ -20,11 +21,20 @@ const router = createBrowserRouter([
   },
 ]);
 
+const theme = createTheme({
+  palette: {
+    primary: { main: '#D84A26' },
+    secondary: { main: '#A79C6F' },
+  },
+});
+
 function App() {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={rainbowChains}>
-        <RouterProvider router={router} />
+        <ThemeProvider theme={theme}>
+          <RouterProvider router={router} />
+        </ThemeProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   );
