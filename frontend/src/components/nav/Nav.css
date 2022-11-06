@@ -1,3 +1,14 @@
+.navbar {
+  min-height: fit-content;
+}
+
+.navbar .logo {
+  display: inline-block;
+  margin: 10px;
+  vertical-align: middle;
+  font-size: 2em;
+}
+
 .navbar ul {
   float: right;
   list-style-type: none;

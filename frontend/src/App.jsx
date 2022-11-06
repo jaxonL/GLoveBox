@@ -7,11 +7,16 @@ import '@rainbow-me/rainbowkit/styles.css';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiConfig } from 'wagmi';
 import { wagmiClient, rainbowChains } from './services/chainConfig';
+import { MyGlovebox } from './pages/MyGlovebox';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+  },
+  {
+    path: '/my-glovebox',
+    element: <MyGlovebox />,
   },
 ]);
 
