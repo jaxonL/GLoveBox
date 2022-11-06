@@ -1,7 +1,5 @@
 # GLoveBox
 
-Project Submission
-
 # Short description
 Give and receive love on-chain. 
 
