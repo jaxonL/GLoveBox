@@ -20,7 +20,9 @@ contract GLoveBox is ERC721, Ownable {
         address from;
     }
 
-    constructor() ERC721("GLoveBox","GLB") {}
+    constructor() ERC721("GLoveBox","GLB") {
+        participants.push(msg.sender);
+    }
 
     modifier callerIsUser() {
         require(tx.origin == msg.sender, "GLoveBox :: Cannot be called by a contract");
@@ -51,10 +53,13 @@ contract GLoveBox is ERC721, Ownable {
 
     // registration
     function register() external callerIsUser {
+        if (owner() == msg.sender) {
+            revert("GLoveBox :: Owner is already registered");
+        }
         // check if this address already registered
         for (uint i; i < participants.length; i++) {
             if (participants[i] == msg.sender) {
-                revert("Already registered");
+                revert("GLoveBox :: Already registered");
             }
         }
         participants.push(msg.sender);
@@ -65,6 +70,9 @@ contract GLoveBox is ERC721, Ownable {
     }
 
     function isRegistered (address participant) public view returns (bool) {
+        if (owner() == participant) {
+            return true;
+        }
         // check if this address already registered
         for (uint i; i < participants.length; i++) {
             if (participants[i] == participant) {
