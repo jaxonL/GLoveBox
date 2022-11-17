@@ -3,5 +3,8 @@
   "editor.formatOnSave": true,
   "prettier.trailingComma": "all",
   "prettier.requireConfig": true,
-  "solidity.defaultCompiler": "localNodeModule"
+  "solidity.defaultCompiler": "localNodeModule",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
