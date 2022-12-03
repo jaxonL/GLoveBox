@@ -1,5 +1,5 @@
 import { Nav } from '../components/nav/Nav';
-import { kGloveBoxAddress, kSkaleExplorer } from '../utils/constants';
+import { Network, kGloveBoxAddress, kBlockExplorer } from '../utils/constants';
 
 export function Faq() {
   return (
@@ -15,11 +15,23 @@ export function Faq() {
         </p>
         <p>GLoveBox is a dApp built on the SKALE network.</p>
         <p>
-          <a href={kSkaleExplorer + '/address/' + kGloveBoxAddress}>
+          <a
+            href={
+              kBlockExplorer[Network.GOERLI] +
+              '/address/' +
+              kGloveBoxAddress[Network.GOERLI]
+            }
+          >
             GLoveBox smart contract
           </a>
         </p>
         <h3>how do i use GLoveBox?</h3>
+        <h4>on Goerli</h4>
+        <p>
+          get some test ETH from any Goerli faucet and start by sending a
+          message.
+        </p>
+        <h4>on SKALE</h4>
         <p>
           get some SFUEL from{' '}
           <a

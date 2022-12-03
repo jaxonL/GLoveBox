@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Nav } from '../components/nav/Nav';
 import { useAccount, useContractRead } from 'wagmi';
 import { kGloveboxAbi } from '../utils/gloveboxAbi';
-import { kGloveBoxAddress } from '../utils/constants';
+import { kGloveBoxAddress, Network } from '../utils/constants';
 import { CircularProgress } from '@mui/material';
 import { Message } from '../components/message/Message';
 
 const gloveboxContract = {
-  address: kGloveBoxAddress,
+  address: kGloveBoxAddress[Network.GOERLI],
   abi: kGloveboxAbi,
 };
 
