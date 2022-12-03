@@ -13,18 +13,35 @@ export function Faq() {
             '"give and receive love on-chain ( ˘⌣˘)♡(˘⌣˘ ) send unconditional good vibes amongst fellow humans"'
           }
         </p>
-        <p>GLoveBox is a dApp built on the SKALE network.</p>
-        <p>
-          <a
-            href={
-              kBlockExplorer[Network.GOERLI] +
-              '/address/' +
-              kGloveBoxAddress[Network.GOERLI]
-            }
-          >
-            GLoveBox smart contract
-          </a>
-        </p>
+        <p>GLoveBox is a dApp built on various networks.</p>
+        <ul>
+          <li>
+            <a
+              href={
+                kBlockExplorer[Network.GOERLI] +
+                '/address/' +
+                kGloveBoxAddress[Network.GOERLI]
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Goerli GLoveBox smart contract
+            </a>
+          </li>
+          <li>
+            <a
+              href={
+                kBlockExplorer[Network.SKALE] +
+                '/address/' +
+                kGloveBoxAddress[Network.SKALE]
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              SKALE GLoveBox smart contract
+            </a>
+          </li>
+        </ul>
         <h3>how do i use GLoveBox?</h3>
         <h4>on Goerli</h4>
         <p>
