@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "solidity code for glovebox smart contract",
   "private": true,
+  "scripts": {
+    "build": "hardhat compile",
+    "test": "hardhat test"
+  },
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",
     "@ethersproject/providers": "^5.7.2",
