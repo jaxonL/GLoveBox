@@ -56,6 +56,7 @@ describe('GLoveBox contract', function () {
   //   expect(await glb.isRegistered(contractAddress.address)).to.be.false;
   // });
 
+  // tests uniqueness and completeness of delivery
   it('should send a message', async function () {
     const { owner, addr1, glb } = await loadFixture(deployFixture);
     const message = 'Hello World!';
@@ -74,7 +75,12 @@ describe('GLoveBox contract', function () {
     const message2 = 'spreading the 💙💜🧡💛 on chain';
     const message3 =
       'some message that is longer than 150 characters and will be still be accepted by the contract. maybe later put this in a constant so we can test texts of varying lengths.';
-    const sentMessages = [message1, message2, message3];
+    const seenMessages = {
+      [message1]: false,
+      [message2]: false,
+      [message3]: false,
+    };
+    const sentMessages = Object.keys(seenMessages);
 
     await glb.connect(addr1).register();
     await glb.connect(addr2).register();
@@ -90,7 +96,10 @@ describe('GLoveBox contract', function () {
       for (let j = 0; j < messages.length; j++) {
         const message = messages[j];
         expect(message.tokenURI).to.be.a('string');
-        expect(sentMessages).to.include(message.tokenURI);
+        // should not have seen the message yet
+        expect(seenMessages).to.have.property(message.tokenURI);
+        expect(seenMessages[message.tokenURI]).to.be.false;
+        seenMessages[message.tokenURI] = true;
       }
       ownerToMessage[participant.address] = messages;
     }
@@ -103,5 +112,6 @@ describe('GLoveBox contract', function () {
     );
 
     expect(totalMessageCount).to.equal(sentMessages.length);
+    expect(Object.values(seenMessages).every((seen) => seen)).to.be.true;
   });
 });
