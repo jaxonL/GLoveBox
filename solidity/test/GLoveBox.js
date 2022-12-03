@@ -67,53 +67,6 @@ describe('GLoveBox contract', function () {
     expect(sentMessage).to.equal(message);
   });
 
-  // also tests ownership record
-  it('should be able to send multiple messages', async function () {
-    const { owner, addr1, addr2, glb } = await loadFixture(deployFixture);
-    const participants = [owner, addr1, addr2];
-    const message1 = "we're all gonna make it";
-    const message2 = "let's gooooo";
-    const message3 = 'to the moon!!!';
-    const sentMessages = [message1, message2, message3];
-
-    await glb.connect(addr1).register();
-    await glb.connect(addr2).register();
-    await glb.connect(addr2).sendMessage(message1);
-    await glb.connect(addr1).sendMessage(message2);
-    await glb.connect(owner).sendMessage(message3);
-
-    const ownerToMessage = {};
-
-    for (let i = 0; i < participants.length; i++) {
-      const participant = participants[i];
-      // console.log(glb);
-      const messages = [];
-      try {
-        for (let j = 0; j < sentMessages.length; j++) {
-          const message = await glb.ownershipRecord(participant.address, j);
-          console.log(message.tokenURI);
-          expect(sentMessages).to.include(message.tokenURI);
-          messages.push(message);
-        }
-      } catch (e) {
-        // console.log(e);
-      }
-      ownerToMessage[participant.address] = messages;
-      for (let j = 0; j < messages.length; j++) {
-        const message = messages[j];
-      }
-    }
-
-    const totalMessageCount = Object.values(ownerToMessage).reduce(
-      (acc, messageList) => {
-        return acc + messageList.length;
-      },
-      0,
-    );
-
-    expect(totalMessageCount).to.equal(sentMessages.length);
-  });
-
   it('should be able to get received messages', async function () {
     const { owner, addr1, addr2, glb } = await loadFixture(deployFixture);
     const participants = [owner, addr1, addr2];

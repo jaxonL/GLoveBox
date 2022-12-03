@@ -9,7 +9,7 @@ contract GLoveBox is ERC721, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     address[] participants;
-    mapping(address=>TokenMetaData[]) public ownershipRecord;
+    mapping(address=>TokenMetaData[]) private ownershipRecord;
     // v1: mapping for token -> metadata
     mapping(uint=>string) public tokenIdToMessage;
 
