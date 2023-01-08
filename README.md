@@ -17,3 +17,14 @@ Messages sent on GloveBox only include text. Currently, all metadata is stored i
 The Front-End was designed in Figma, and implemented using React.
 
 The smart contract was created using solidity which implemented the openzeppelin contracts. The contract was written on remix.ethereum.org and was connected to the skale chain endpoint of one of the networks. The smart contract is connected to a metamask wallet that has a specific private key and sends a message full of positivity to a random person when deployed onto the network.
+
+## Developmemt
+
+### Solidity
+
+#### Deploying the contract
+
+1. Duplicate and replace the values in `.env.example` with the correct values.
+2. Save the file as `.env`. Do ***NOT*** check this file in.
+3. Run the command `npx hardhat run scripts/deploy.js --network <network-name>` to deploy to a live network.
+   1. To test the deployment, you can run `npx hardhat run scripts/deploy.js`.
