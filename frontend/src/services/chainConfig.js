@@ -1,15 +1,9 @@
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
-import {
-  chain,
-  configureChains,
-  createClient,
-} from 'wagmi';
+import { configureChains, createClient } from 'wagmi';
+import { goerli } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 
-const { provider, chains } = configureChains(
-  [chain.goerli],
-  [publicProvider()],
-);
+const { provider, chains } = configureChains([goerli], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
   appName: 'GLoveBox',
