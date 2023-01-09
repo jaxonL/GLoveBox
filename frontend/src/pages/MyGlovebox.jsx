@@ -5,6 +5,7 @@ import { kGloveboxAbi } from '../utils/gloveboxAbi';
 import { kGloveBoxAddress, Network } from '../utils/constants';
 import { CircularProgress } from '@mui/material';
 import { Message } from '../components/message/Message';
+import { useNavigate } from 'react-router-dom';
 
 const gloveboxContract = {
   address: kGloveBoxAddress[Network.GOERLI],
@@ -12,7 +13,14 @@ const gloveboxContract = {
 };
 
 export function MyGlovebox() {
-  const { address } = useAccount();
+  const navigate = useNavigate();
+  const { address } = useAccount({
+    /** force navigate to homepage on disconnect */
+    onDisconnect() {
+      return navigate('/');
+    },
+  });
+
   const [messageIndices, setMessageIndices] = useState([]);
 
   const { data: balanceOf, isLoading: loadingBalanceOf } = useContractRead({
