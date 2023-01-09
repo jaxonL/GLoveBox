@@ -23,6 +23,6 @@ export const kBlockExplorer = {
 
 // contract values
 export const kGloveBoxAddress = {
-  [Network.GOERLI]: '0x713412112EA469a7BcB07125183B40c953069A28',
+  [Network.GOERLI]: '0x09B616e0c56b0d2290834A9c77e1AEcc089C4740',
   [Network.SKALE]: kSkaleGlbAddress,
 };
