@@ -1,5 +1,28 @@
-// export const kGloveBoxAddress = '0x966314C1D418bf65D7647B52f29A5b2a684644E1';
-export const kGloveBoxAddress = '0x288aB731bBAe151C544a11c82839243AB44d6fb9';
-export const kSkaleChainId = 647_426_021;
-export const kSkaleEndpoint = 'https://eth-sf.skalenodes.com/v1/hackathon-complex-easy-naos';
-export const kSkaleExplorer = 'https://hackathon-complex-easy-naos.explorer.eth-sf.skalenodes.com';
+import {
+  kSkaleGlbAddress,
+  kSkaleChainId,
+  kSkaleExplorer,
+} from '../services/skaleConfig';
+
+// networks
+export var Network;
+(function (Network) {
+  Network[(Network['MAINNET'] = 1)] = 'MAINNET';
+  Network[(Network['GOERLI'] = 5)] = 'GOERLI';
+  Network[(Network['SKALE'] = kSkaleChainId)] = 'SKALE';
+})(Network || (Network = {}));
+
+// TODO: have the current chain be provided throughout the app. for now, default to goerli
+
+// block explorers
+export const kBlockExplorer = {
+  [Network.MAINNET]: 'https://etherscan.io',
+  [Network.GOERLI]: 'https://goerli.etherscan.io',
+  [Network.SKALE]: kSkaleExplorer,
+};
+
+// contract values
+export const kGloveBoxAddress = {
+  [Network.GOERLI]: '0x09B616e0c56b0d2290834A9c77e1AEcc089C4740',
+  [Network.SKALE]: kSkaleGlbAddress,
+};

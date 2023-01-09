@@ -8,11 +8,15 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
 } from 'wagmi';
-import { kGloveBoxAddress, kSkaleExplorer } from '../utils/constants';
+import { Network, kGloveBoxAddress, kBlockExplorer } from '../utils/constants';
 import { useEffect } from 'react';
 import { useDebounce } from '../hooks/useDebounce';
 import { kGloveboxAbi } from '../utils/gloveboxAbi';
 import { Link } from 'react-router-dom';
+
+// TODO: have the current chain be provided throughout the app. for now, default to goerli
+const gloveBoxContractAddress = kGloveBoxAddress[Network.GOERLI];
+const explorerAddress = kBlockExplorer[Network.GOERLI];
 
 export function Home() {
   const [message, setMessage] = useState('');
@@ -27,7 +31,7 @@ export function Home() {
 
   const { data: isRegisteredData, refetch: refetchIsRegistered } =
     useContractRead({
-      address: kGloveBoxAddress,
+      address: gloveBoxContractAddress,
       abi: kGloveboxAbi,
       functionName: 'isRegistered',
       args: [address],
@@ -42,7 +46,7 @@ export function Home() {
   }, [isRegisteredData]);
 
   const { config: sendMessageConfig } = usePrepareContractWrite({
-    address: kGloveBoxAddress,
+    address: gloveBoxContractAddress,
     abi: kGloveboxAbi,
     functionName: 'sendMessage',
     args: [debouncedMessage],
@@ -50,7 +54,7 @@ export function Home() {
   });
 
   const { config: registerConfig } = usePrepareContractWrite({
-    address: kGloveBoxAddress,
+    address: gloveBoxContractAddress,
     abi: kGloveboxAbi,
     functionName: 'register',
   });
@@ -142,7 +146,7 @@ export function Home() {
               <p>
                 view your transaction{' '}
                 <a
-                  href={kSkaleExplorer + '/tx/' + sendMessageData?.hash}
+                  href={explorerAddress + '/tx/' + sendMessageData?.hash}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

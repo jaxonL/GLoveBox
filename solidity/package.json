@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "build": "hardhat compile",
-    "test": "hardhat test"
+    "test": "hardhat test",
+    "deploy:goerli": "hardhat run scripts/deploy.js --network goerli",
+    "flatten": "hardhat flatten contracts/Glovebox.sol > flattened/Glovebox_flat.sol"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",
@@ -24,5 +26,8 @@
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.2",
     "typechain": "^8.1.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
   }
 }

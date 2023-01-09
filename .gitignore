@@ -3,4 +3,5 @@ build/
 cache
 artifacts
 .env
+.env.*
 .DS_Store
